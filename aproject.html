@@ -1,63 +1,100 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-#monkey{
-    position: absolute;
-    width: 100px;
-    height:100px;
-    top:250px;
-      left:600px;
-}
-        </style>
-    </head>
-    <body>
-<img id="monkey" src = 'https://static.vecteezy.com/system/resources/previews/035/982/843/non_2x/ai-generated-monkey-isolated-on-transparent-background-free-png.png'>
-    </body>
+<title>monkey's adventure</title>
+<head>
+   <style>
+      #monkey {
+         position: absolute;
+         width: 100px;
+         height: 100px;
+         top: 250px;
+         left: 400px;
+      }
+
+      body {
+         background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuO-c6GuLWPiZfbA3w5JDGhBCeTE7RGOnOjeJeUmA4kHV5dAHS:https://blog.castlebespokeflooring.com/hs-fs/hubfs/close-up-of-wooden-plank-326311.jpg%3Fwidth%3D431%26name%3Dclose-up-of-wooden-plank-326311.jpg&s);
+         background-color: lightblue;
+         background-repeat: no-repeat;
+         background-size: cover;
+      }
+
+      #coin {
+         position: absolute;
+         left: 700px;
+         top: 100px;
+         width:50px;
+         line-height:50px;
+      }
+   </style>
+</head>
+
+<body>
+   <img id="monkey"
+      src='https://static.vecteezy.com/system/resources/previews/035/982/843/non_2x/ai-generated-monkey-isolated-on-transparent-background-free-png.png'>
+   <img id="coin"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjAkeK6kbuhYZXUNEzReHQ-zORMfOX1PF_7w4InbArJ1D2VZ4:https://i.pinimg.com/originals/b2/08/a8/b208a84a728c632b655ed4f35b229627.jpg&s">
+
+
+</body>
 <script>
-let x = 10
-let y = 10
-let xd = 5
-let yd = 5 
+   document.addEventListener("keydown", keyDown)
+   document.addEventListener("keyup", keyUp)
 
-function keyDown(e) {
+   var monkey = {
+      x: 600,
+      xd: 0,
+      y: 400,
+      yd: 0,
+      left: 65,
+      right: 68,
+      up: 87,
+      down: 83,
+   }
 
-if (e.key === "a") {
-   key.a = true
-}
-if (e.key === "s") {
-   key.s = true
-}
-if (e.key === "d") {
-   key.d = true
-}
-if (e.key === "w") {
-   key.w = true
-}
+   function keyDown(e) {
 
-}
-function keyUp(e) {
-
-if (e.key === "a") {
-   key.a = false
-}
-if (e.key === "s") {
-   key.s = false
-}
-if (e.key === "d") {
-   key.d = false
-}
-if (e.key === "w") {
-   key.w = false
-}
-
-}
-function movement(){
+      if (e.which === monkey.left) {
+         monkey.xd = -5;
+      } else
+         if (e.which === monkey.right) {
+            monkey.xd = 5
+         } else if (e.which === monkey.up) {
+            monkey.yd = -5
+         } else if (e.which === monkey.down) {
+            monkey.yd = 5
+         }
 
 
+   }
 
-    
-}
+   function keyUp(e) {
+
+      if (e.which === monkey.right) {
+         monkey.xd = 0
+      } else
+         if (e.which === monkey.left) {
+            monkey.xd = 0
+         } else
+            if (e.which === monkey.up) {
+               monkey.yd = 0
+            } else
+               if (e.which === monkey.down) {
+                  monkey.yd = 0
+               }
+
+   }
+   movement()
+
+   
+   setInterval(movement, 16)
+
+
+   function movement() {
+      monkey.x += monkey.xd
+      monkey.y += monkey.yd
+      document.getElementById("monkey").style.left = monkey.x + "px"
+      document.getElementById("monkey").style.top = monkey.y + "px"
+   }
+
+
 </script>
-    </html>
-
