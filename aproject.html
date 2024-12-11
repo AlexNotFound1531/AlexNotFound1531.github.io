@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <title>monkey's adventure</title>
+
 <head>
    <style>
       #monkey {
          position: absolute;
-         width: 100px;
-         height: 100px;
+         width: 50px;
+         height: 50px;
          top: 250px;
          left: 400px;
       }
@@ -22,8 +23,14 @@
          position: absolute;
          left: 700px;
          top: 100px;
-         width:50px;
-         line-height:50px;
+         width: 50px;
+         height: 50px;
+      }
+      #score{position: absolute;
+         top: 10px;
+         left: 100px;
+         color: white;
+
       }
    </style>
 </head>
@@ -32,19 +39,32 @@
    <img id="monkey"
       src='https://static.vecteezy.com/system/resources/previews/035/982/843/non_2x/ai-generated-monkey-isolated-on-transparent-background-free-png.png'>
    <img id="coin"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKjAkeK6kbuhYZXUNEzReHQ-zORMfOX1PF_7w4InbArJ1D2VZ4:https://i.pinimg.com/originals/b2/08/a8/b208a84a728c632b655ed4f35b229627.jpg&s">
+      src="https://pngimg.com/d/cotton_PNG13.png">
 
+      <p id="score">score: 0</p>
 
 </body>
 <script>
    document.addEventListener("keydown", keyDown)
    document.addEventListener("keyup", keyUp)
-
+   let coinSound = new Audio("Mario-coin-sound.mp3")
+   let windowWidth = window.innerWidth
+   let windowHeight = window.innerHeight
+   //score
+   let coinScore = 0
+   var coin = {
+      x: 700,
+      y: 100,
+      width: 50,
+      height: 50,
+   }
    var monkey = {
       x: 600,
       xd: 0,
       y: 400,
       yd: 0,
+      height: 50,
+      width: 50,
       left: 65,
       right: 68,
       up: 87,
@@ -85,7 +105,7 @@
    }
    movement()
 
-   
+
    setInterval(movement, 16)
 
 
@@ -96,5 +116,52 @@
       document.getElementById("monkey").style.top = monkey.y + "px"
    }
 
+   function cssToJava() {
+      //monkey AKA player
+      document.getElementById("monkey").style.width = monkey.width+ "px"
+      document.getElementById("monkey").style.height = monkey.height+ "px"
+      document.getElementById("monkey").style.left = monkey.x+ "px"
+      document.getElementById("monkey").style.top = monkey.y+ "px"
+      //coin collectable 
+      document.getElementById("coin").style.width = coin.height+ "px"
+      document.getElementById("coin").style.height = coin.width+ "px"
+      document.getElementById("coin").style.left = coin.x+ "px"
+      document.getElementById("coin").style.top = coin.y+ "px"
+   }
 
+   let sound = false
+   function collision() {
+      if (monkey.x <= coin.x + coin.width &&
+         monkey.x + monkey.width >= coin.x &&
+         monkey.y <= coin.y + coin.height &&
+         monkey.y + monkey.height >= coin.y
+      ) {
+         if (sound === false) {
+            sound = true
+            coinSound.load()
+            coinSound.play()
+            coinScore = coinScore + 1
+            document.getElementById('score').innerText = "score: " + coinScore
+            respawnCoin()
+
+         }
+
+
+      } else {
+         sound = false
+      }
+   }
+
+
+   function respawnCoin() {
+      coin.x = Math.floor(Math.random() * windowWidth - coin.width) + 1
+      coin.y = Math.floor(Math.random() * windowHeight - coin.height) + 1
+      
+      cssToJava()
+
+   }
+
+   setInterval(collision, 1)
+   setInterval(cssToJava, 1)
+   
 </script>

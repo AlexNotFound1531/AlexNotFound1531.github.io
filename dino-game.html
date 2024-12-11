@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<title>dino game</title>
+
+<head>
+   <style>
+      #dino{
+         position: absolute;
+         top: 500px;
+         left: 200px;
+         width: 100px;
+         height: 100px;
+      }
+
+      #cactus {
+         position: absolute;
+         top: 500px;
+         left: 600px;
+         width: 50px;
+         height: 100px;
+      }
+
+      #gameOverText {
+         position: absolute;
+         top: 100px;
+         left: 500px;
+      }
+
+      body {
+         background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAIAA6QMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAABAECAwUH/8QAMxAAAgECBAQEBQEJAAAAAAAAAAECBBEDFZPREiFBVAUxYYEGIlFxkRMUFiMyU4KhwfD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS5jQ97TasdxmND3tNqx3AqBLmND3tNqx3GY0Pe02rHcCoEuY0Pe02rHcZjQ97TasdwKgS5jQ97TasdxmND3tNqx3AqBLmND3tNqx3GY0Pe02rHcCoEuY0Pe02rHcZjQ97TasdwKgS5jQ97TasdxmND3tNqx3AqBLmND3tNqx3GY0Pe02rHcCoEuY0Pe02rHcZjQ97TasdwKgS5jQ97TasdxmND3tNqx3AqOZzjhwlPEkowim5Sk7JJdSfMaHvabVjuTeKVNJV+GVlNhV1Kp42BPDi5Yysm4tK4HxqX4rl+8viVBUxhKlwsamwaaWFG7bxV5t3s19iKi+PoVXizksGS8LlRQxofJ/F43jRwufO1ry/wfE+F6N1XxPWvxDHhRQpHR4k8JyhL9SUIfJaadrcr8r3T6HjkNNgfGWP4Z4XV4eHQukhiPEqMXiWHBY+HNxg+vzRSSb6vncD9aBNmND3tNqx3MzGh72m1Y7gVAlzGh72m1Y7jMaHvabVjuBUCXMaHvabVjuMxoe9ptWO4FEopyjJuV4+VpNL3XU6AAxJq95N3fXoHdppNr1XQ0AcqKU5TTleVr3k7cvToHF8alxySSa4eVn6/U6AGR4lFcbTl1aVkY4JyUm5XX0k7denudADlxTlGTcrx8rSaXuupkcNRnKfFNykrO8nb8eSOwBj4uF2a4udnbkvpyPOOHNJy474rSUnz4faN+R6gAY73un08jQB54cJLhliz4sRKzcbxi/7bs7s+JvidmkuHov+/wBGgDicHL+XElB3TdrO/pzOrfNxc72t58vwaADvys/uY03a0mrPp1NAHM4KcoybleLurSa/NvP3OgAPkUHgWHReOeJ+KwqMR4leocULJKHCrcvr7jA8Cw8L4lxPHP2jElizpFTPDcVa10+L7/KfXAGNXt58vUzgX6nGpSTtZri5Pz6e50AMavbz5eokm1ZScfVWNABeXnc8/wBOf9fE/Edj0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/2Q==);
+         background-repeat: no-repeat;
+         background-size: cover;
+         top: 300px
+      }
+   </style>
+</head>
+
+<body>
+
+   <p id="gameOverText"></p>
+   <img id="dino"
+      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALMAvwMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAABAUGB//EACgQAQACAQMDAwMFAAAAAAAAAAABAwIEBREGEiExgZFRUmEHEyJBQv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDw0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX73s+t2LXTodzrwq1WOMZZ1Y2Y5zhz6Rl2zPE/j1QAAAAAAAAAAAAAAAAAAAAAAA2erdy2/eN7t3LbdJZpI1URbqKc8+7HG6fOfZP2zPmOfrP8AXDGWbnt9m32145W1XV3VxbVdTM9tmM8xzHMRMeYmOJiJ5iUYAAAAAAAAAAAAAAAAAAAADtv0b2rTbv19odPrcMLNPjXbnnXnHMZ/wmIj5mJ9nEtnpDqC/pfqDTbxpq4tsojOP28suIy7sZx8/PPsCLc9wz3CymZppoqoqiqqmmMu3DHmZ/1MzPM5ZT5mfVGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2Q==">
+   <img id="cactus"
+      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALMAvwMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAABAUGB//EACgQAQACAQMDAwMFAAAAAAAAAAABAwIEBREGEiExgZFRUmEHEyJBQv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDw0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAX73s+t2LXTodzrwq1WOMZZ1Y2Y5zhz6Rl2zPE/j1QAAAAAAAAAAAAAAAAAAAAAAA2erdy2/eN7t3LbdJZpI1URbqKc8+7HG6fOfZP2zPmOfrP8AXDGWbnt9m32145W1XV3VxbVdTM9tmM8xzHMRMeYmOJiJ5iUYAAAAAAAAAAAAAAAAAAAADtv0b2rTbv19odPrcMLNPjXbnnXnHMZ/wmIj5mJ9nEtnpDqC/pfqDTbxpq4tsojOP28suIy7sZx8/PPsCLc9wz3CymZppoqoqiqqmmMu3DHmZ/1MzPM5ZT5mfVGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/2Q==">
+</body>
+<script>
+   document.addEventListener("keyup",keyUp)
+   document.addEventListener("keydown", keyDown)
+   let jumpSound = new Audio("Dino game jump Sound Effect.mp3")
+   let cactus = {
+      x: 600,
+      xd: 0,
+      y: 530,
+      height: 70,
+      width: 20,
+   }
+
+   let dino = {
+      y: 500,
+      yd: 0,
+      x: 100,
+      width: 50,
+      height: 100,
+   }
+
+   function keyDown(e) {
+      if (e.key === "w" && dino.y >= 500) {
+         dino.yd = -5
+         jumpSound.load()
+         jumpSound.play()
+      }else
+      if (e.key === "s") {
+         dino.height = 50
+         dino.y = 500
+   
+      }
+   }
+
+   function keyUp(e) {
+      if (e.key === "s") {
+         dino.height = 100
+         dino.y = 500
+      }
+   }
+
+   function gravityLogic() {
+
+      dino.y = dino.y + dino.yd
+      dino.yd = dino.yd + .1
+
+      if (dino.y >= 500) {
+         dino.yd = 0 
+         dino.y = 500
+      }
+   
+   }
+
+
+
+   function javaToCss() {
+      //dino
+      document.getElementById("dino").style.width = dino.width + "px"
+      document.getElementById("dino").style.height = dino.height + "px"
+      document.getElementById("dino").style.top = dino.y + "px"
+      document.getElementById("dino").style.left = dino.x + "px"
+      //cactus
+      document.getElementById("cactus").style.left = cactus.x + "px"
+      document.getElementById("cactus").style.top = cactus.y + "px"
+      document.getElementById("cactus").style.height = cactus.height + "px"
+      document.getElementById("cactus").style.width = cactus.width + "px"
+   }
+
+   function cactusMovement() {
+      cactus.x = cactus.xd
+      cactus.xd = cactus.xd - 2
+      if (cactus.x < 0) {
+         cactus.xd = 1300
+
+      }
+   }
+   function collision() {
+      if (dino.x <= cactus.x + cactus.width &&
+         dino.x + dino.width >= cactus.x &&
+         dino.y <= cactus.y + cactus.height &&
+         dino.y + dino.height >= cactus.y
+      ) {
+         //gameOver()
+      }
+   }
+
+   function gameOver() {
+      document.getElementById("gameOverText").innerText = "game over loser (reset the god damn page now)"
+      dino = 0
+      cactus = 0
+   }
+
+   setInterval(collision, 1)
+   setInterval(cactusMovement, 1)
+   setInterval(gravityLogic, 1)
+   setInterval(keyDown, 1)
+   setInterval(keyUp, 1)
+   setInterval(javaToCss, 1)
+
+</script>
