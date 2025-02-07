@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      #box{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width:100px;
+        height:100px;
+        background-color:black;
+      }
+    </style>
+</head>
+<body>
+    <div id="box">  </div>
+</body>
+<script>
+    let boxProp = {
+    speedX: 0,
+    accelerationX: 5,
+    speedY: 0,
+    accelerationY: 5,
+    }
+
+    let box1Prop = {
+
+    }
+function boxMove(){
+if(boxProp.speedX <= 0){
+boxProp.speedX = boxProp.accelerationX + boxProp.speedX
+boxProp.accelerationX = boxProp.accelerationX + 1 
+
+}
+}
+
+function javaToCss(){
+    document.getElementById("box").style.left = boxProp.speedX + "px"
+}
+
+setinterval(boxMove,1)
+setinterval(javaToCss, 1)
+
+</script>
+</html>
