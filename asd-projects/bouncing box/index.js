@@ -39,7 +39,7 @@
         it should increase the points total, increase the speed, and move the box to
         the left side of the screen.
         */
-        function handleBoxClick() {
+        function handleBoxClick() { //it handles the box
             points += 1;
             $('#box').text(points);
             
