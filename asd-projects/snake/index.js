@@ -121,18 +121,18 @@ function moveSnake() {
   */
 
   //Before moving the head, check for a new direction from the keyboard input
-  for (var i= snake.body.length-1; i >= 1; i--){
+  for (var i = snake.body.length - 1; i >= 1; i--) {
 
-var snakeSquare = snake.body[i]
-var nextSquareSnake = snake.body[i-1];
-snakeSquare.direction = nextSquareSnake.direction;
-snakeSquare.row = nextSquareSnake.row;
-snakeSquare.column = nextSquareSnake.column;
-repositionSquare(snakeSquare);
+    var snakeSquare = snake.body[i]
+    var nextSquareSnake = snake.body[i - 1];
+    snakeSquare.direction = nextSquareSnake.direction;
+    snakeSquare.row = nextSquareSnake.row;
+    snakeSquare.column = nextSquareSnake.column;
+    repositionSquare(snakeSquare);
 
   }
 
-  
+
   checkForNewDirection();
 
   /* 
@@ -220,20 +220,20 @@ function handleAppleCollision() {
   var column = 0;
 
   if (snake.tail.direction === "left") {
-    row = snake.tail.row 
+    row = snake.tail.row
     column = snake.tail.column + 1
   }
   if (snake.tail.direction === "right") {
-    row = snake.tail.row 
-    column = snake.tail.column - 1 
+    row = snake.tail.row
+    column = snake.tail.column - 1
   }
   if (snake.tail.direction === "up") {
-    column = snake.tail.column 
-    row = snake.tail.row + 1 
+    column = snake.tail.column
+    row = snake.tail.row + 1
   }
   if (snake.tail.direction === "down") {
     column = snake.tail.column
-    row = snake.tail.row - 1 
+    row = snake.tail.row - 1
 
   }
 
@@ -252,7 +252,13 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-
+  for (var i = snake.body.length - 1; i > 0; i--) {
+    if (snake.head.row === snake.body[i].row){
+      if(snake.head.column === snake.body[i].column){
+        return true
+      }
+    }
+  }
   return false;
 }
 
